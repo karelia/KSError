@@ -48,4 +48,12 @@
     [self setObject:description forUserInfoKey:NSLocalizedDescriptionKey];
 }
 
+#pragma mark NSCopying
+
+- (id)copyWithZone:(NSZone *)zone;
+{
+    // Default probably does [self retain]. Must override because we're mutable
+    return [[NSError alloc] initWithDomain:[self domain] code:[self code] userInfo:[self userInfo]];
+}
+
 @end
