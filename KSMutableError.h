@@ -18,4 +18,11 @@
 - (id)objectForUserInfoKey:(id)key; // slightly faster than -userInfo
 - (void)setObject:(id)object forUserInfoKey:(id)key;
 
+// Note you can only mutate user info; domain & code are fixed
+
+
+#pragma mark Convenience
+@property(nonatomic, copy) NSString *localizedDescription;
+
+
 @end

@@ -33,4 +33,12 @@
     [_mutableUserInfo setObject:object forKey:key];
 }
 
+#pragma mark Convenience
+
+@dynamic localizedDescription;
+- (void)setLocalizedDescription:(NSString *)description;
+{
+    [self setObject:description forUserInfoKey:NSLocalizedDescriptionKey];
+}
+
 @end
