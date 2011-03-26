@@ -15,8 +15,8 @@
     NSMutableDictionary *_mutableUserInfo;
 }
 
-- (id)objectForUserInfoKey:(id)key; // slightly faster than -userInfo
-- (void)setObject:(id)object forUserInfoKey:(id)key;
+- (id)objectForUserInfoKey:(NSString *)key; // slightly faster than -userInfo
+- (void)setObject:(id)object forUserInfoKey:(NSString *)key;
 
 // Note you can only mutate user info; domain & code are fixed
 

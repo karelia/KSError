@@ -23,16 +23,16 @@
     return [[_mutableUserInfo copy] autorelease];
 }
 
-- (id)objectForUserInfoKey:(id)key; // slightly faster than -userInfo
+- (id)objectForUserInfoKey:(NSString *)key; // slightly faster than -userInfo
 {
     return [_mutableUserInfo objectForKey:key];
 }
 
-- (void)setObject:(id)object forUserInfoKey:(id)key;
+- (void)setObject:(id)object forUserInfoKey:(NSString *)key;
 {
     if (_mutableUserInfo)
     {
-        [_mutableUserInfo setObject:object forKey:key];
+        [_mutableUserInfo setValue:object forKey:key];  // handle nil
     }
     else
     {
