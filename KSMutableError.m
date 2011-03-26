@@ -30,7 +30,14 @@
 
 - (void)setObject:(id)object forUserInfoKey:(id)key;
 {
-    [_mutableUserInfo setObject:object forKey:key];
+    if (_mutableUserInfo)
+    {
+        [_mutableUserInfo setObject:object forKey:key];
+    }
+    else
+    {
+        _mutableUserInfo = [[NSMutableDictionary alloc] initWithObjectsAndKeys:object, key, nil];
+    }
 }
 
 #pragma mark Convenience
