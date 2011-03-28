@@ -20,6 +20,21 @@
                                   forKey:NSLocalizedDescriptionKey]];
 }
 
++ (id)errorWithDomain:(NSString *)errorDomain
+                 code:(NSInteger)errorCode 
+ localizedDescription:(NSString *)description
+localizedRecoverySuggestion:(NSString *)recoverySuggestion
+      underlyingError:(NSError *)underlyingError
+{
+    KSMutableError *result = [KSMutableError errorWithDomain:errorDomain code:errorCode userInfo:nil];
+    
+    [result setObject:description forUserInfoKey:NSLocalizedDescriptionKey];
+    [result setObject:recoverySuggestion forUserInfoKey:NSLocalizedRecoverySuggestionErrorKey];
+    [result setObject:underlyingError forUserInfoKey:NSUnderlyingErrorKey];
+    
+    return result;
+}
+
 @end
 
 

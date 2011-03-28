@@ -15,6 +15,12 @@
                  code:(NSInteger)anErrorCode
  localizedDescription:(NSString *)aLocalizedDescription;
 
++ (id)errorWithDomain:(NSString *)errorDomain
+                 code:(NSInteger)errorCode 
+ localizedDescription:(NSString *)description
+localizedRecoverySuggestion:(NSString *)recoverySuggestion
+      underlyingError:(NSError *)underlyingError;
+
 @end
 
 
