@@ -20,6 +20,19 @@
                                   forKey:NSLocalizedDescriptionKey]];
 }
 
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
+{
+	va_list argList;
+	va_start(argList, format);
+	NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
+	va_end(argList);
+	
+	KSError *result = [self errorWithDomain:domain code:code localizedDescription:formatted];
+    
+    [formatted release];
+    return result;
+}
+
 + (id)errorWithDomain:(NSString *)errorDomain
                  code:(NSInteger)errorCode 
  localizedDescription:(NSString *)description

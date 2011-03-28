@@ -11,9 +11,9 @@
 
 @interface KSError : NSError    // subclass so don't have to prefix method names
 
-+ (id)errorWithDomain:(NSString *)anErrorDomain
-                 code:(NSInteger)anErrorCode
- localizedDescription:(NSString *)aLocalizedDescription;
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
+
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
 
 + (id)errorWithDomain:(NSString *)errorDomain
                  code:(NSInteger)errorCode 
