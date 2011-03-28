@@ -40,7 +40,11 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 
 #pragma mark Convenience
+
 @property(nonatomic, copy) NSString *localizedDescription;
+- (void)setLocalizedDescriptionWithFormat:(NSString *)format, ...;
+
+- (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ...;
 
 
 @end

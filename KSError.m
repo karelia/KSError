@@ -93,6 +93,30 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     [self setObject:description forUserInfoKey:NSLocalizedDescriptionKey];
 }
 
+- (void)setLocalizedDescriptionWithFormat:(NSString *)format, ...;
+{
+    va_list argList;
+	va_start(argList, format);
+	NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
+	va_end(argList);
+	
+	[self setLocalizedDescription:formatted];
+    
+    [formatted release];
+}
+
+- (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ...;
+{
+    va_list argList;
+	va_start(argList, format);
+	NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
+	va_end(argList);
+	
+	[self setObject:formatted forUserInfoKey:NSLocalizedRecoverySuggestionErrorKey];
+    
+    [formatted release];
+}
+
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone;
