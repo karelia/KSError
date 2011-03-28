@@ -11,6 +11,15 @@
 
 @implementation KSError
 
++ (id)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription
+{
+	return [self errorWithDomain:anErrorDomain
+                            code:anErrorCode
+                        userInfo:[NSDictionary
+                                  dictionaryWithObject:aLocalizedDescription
+                                  forKey:NSLocalizedDescriptionKey]];
+}
+
 @end
 
 
