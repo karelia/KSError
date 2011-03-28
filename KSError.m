@@ -1,12 +1,20 @@
 //
-//  KSMutableError.m
+//  KSError.m
 //  Sandvox
 //
 //  Created by Mike on 26/03/2011.
 //  Copyright 2011 Karelia Software. All rights reserved.
 //
 
-#import "KSMutableError.h"
+#import "KSError.h"
+
+
+@implementation KSError
+
+@end
+
+
+#pragma mark -
 
 
 @implementation KSMutableError

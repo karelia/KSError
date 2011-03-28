@@ -1,5 +1,5 @@
 //
-//  KSMutableError.h
+//  KSError.h
 //  Sandvox
 //
 //  Created by Mike on 26/03/2011.
@@ -9,7 +9,15 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface KSMutableError : NSError
+@interface KSError : NSError    // subclass so don't have to prefix method names
+
+@end
+
+
+#pragma mark -
+
+
+@interface KSMutableError : KSError
 {
   @private
     NSMutableDictionary *_mutableUserInfo;
