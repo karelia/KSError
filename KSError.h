@@ -21,6 +21,12 @@
 localizedRecoverySuggestion:(NSString *)recoverySuggestion
       underlyingError:(NSError *)underlyingError;
 
++ (id)validationErrorWithCode:(NSInteger)code
+                       object:(id)object
+                          key:(NSString *)key
+                        value:(id)value
+   localizedDescriptionFormat:(NSString *)format, ...;
+
 @end
 
 

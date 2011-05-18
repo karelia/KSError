@@ -48,6 +48,23 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
++ (id)validationErrorWithCode:(NSInteger)code
+                       object:(id)object
+                          key:(NSString *)key
+                        value:(id)value
+   localizedDescriptionFormat:(NSString *)format, ...;
+{
+    KSMutableError *result = [KSMutableError errorWithDomain:NSCocoaErrorDomain
+                                                        code:code
+                                  localizedDescriptionFormat:format];
+    
+    [result setObject:object forUserInfoKey:NSValidationObjectErrorKey];
+    [result setObject:key forUserInfoKey:NSValidationKeyErrorKey];
+    [result setObject:value forUserInfoKey:NSValidationValueErrorKey];
+    
+    return result;
+}
+
 @end
 
 
