@@ -54,9 +54,15 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
                         value:(id)value
    localizedDescriptionFormat:(NSString *)format, ...;
 {
-    KSMutableError *result = [KSMutableError errorWithDomain:NSCocoaErrorDomain
+    va_list argList;
+	va_start(argList, format);
+	NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
+	va_end(argList);
+	
+	KSMutableError *result = [KSMutableError errorWithDomain:NSCocoaErrorDomain
                                                         code:code
-                                  localizedDescriptionFormat:format];
+                                        localizedDescription:formatted];
+    [formatted release];
     
     [result setObject:object forUserInfoKey:NSValidationObjectErrorKey];
     [result setObject:key forUserInfoKey:NSValidationKeyErrorKey];
