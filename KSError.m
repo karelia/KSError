@@ -71,6 +71,23 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
+{
+    KSMutableError *result = [KSMutableError errorWithDomain:domain code:code userInfo:nil];
+    
+    [result setObject:URL forUserInfoKey:NSURLErrorKey];
+    
+    if ([URL isFileURL]) [result setObject:[URL path] forUserInfoKey:NSFilePathErrorKey];
+    
+    if ([domain isEqualToString:NSURLErrorDomain])
+    {
+        [result setObject:URL forUserInfoKey:NSURLErrorFailingURLErrorKey];
+        [result setObject:[URL absoluteString] forUserInfoKey:NSURLErrorFailingURLStringErrorKey];
+    }
+    
+    return result;
+}
+
 @end
 
 

@@ -27,6 +27,8 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
                         value:(id)value
    localizedDescriptionFormat:(NSString *)format, ...;
 
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
+
 @end
 
 
