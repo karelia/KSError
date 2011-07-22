@@ -71,6 +71,15 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
++ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
+{
+    NSParameterAssert(store);
+    
+    KSMutableError *result = [KSMutableError errorWithDomain:domain code:code URL:[store URL]];
+    [result setObject:[NSArray arrayWithObject:store] forUserInfoKey:NSAffectedStoresErrorKey];
+    return result;
+}
+
 + (id)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
 {
     KSMutableError *result = [KSMutableError errorWithDomain:domain code:code userInfo:nil];
