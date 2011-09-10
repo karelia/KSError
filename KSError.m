@@ -90,8 +90,12 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     
     if ([domain isEqualToString:NSURLErrorDomain])
     {
+#if defined MAC_OS_X_VERSION_10_6 && MAC_OS_X_VERSION_MAX_ALLOWED > MAC_OS_X_VERSION_10_6
         [result setObject:URL forUserInfoKey:NSURLErrorFailingURLErrorKey];
         [result setObject:[URL absoluteString] forUserInfoKey:NSURLErrorFailingURLStringErrorKey];
+#else
+        [result setObject:[URL absoluteString] forUserInfoKey:NSErrorFailingURLStringKey];
+#endif
     }
     
     return result;
