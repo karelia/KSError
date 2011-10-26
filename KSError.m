@@ -12,13 +12,18 @@
 
 - (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code;
 {
+    return ([self ks_errorOfDomain:domain code:code] != nil);
+}
+
+- (NSError *)ks_errorOfDomain:(NSString *)domain code:(NSInteger)code;
+{
     if ([[self domain] isEqualToString:domain] && [self code] == code)
     {
-        return YES;
+        return self;
     }
     
     // Carry on down to underlying errors then
-    return [[[self userInfo] objectForKey:NSUnderlyingErrorKey] ks_isErrorOfDomain:domain code:code];
+    return [[[self userInfo] objectForKey:NSUnderlyingErrorKey] ks_errorOfDomain:domain code:code];
 }
 
 @end

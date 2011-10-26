@@ -14,6 +14,9 @@
 // Returns YES if the receiver or one of its underlying erros matches the domain and code
 - (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code;
 
+// Lower-level version of the above so you can pick out the specific error and work with it
+- (NSError *)ks_errorOfDomain:(NSString *)domain code:(NSInteger)code;
+
 @end
 
 
