@@ -9,6 +9,17 @@
 #import <Cocoa/Cocoa.h>
 
 
+@interface NSError (KSError)
+
+// Returns YES if the receiver or one of its underlying erros matches the domain and code
+- (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code;
+
+@end
+
+
+#pragma mark -
+
+
 @interface KSError : NSError    // subclass so don't have to prefix method names
 
 + (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;

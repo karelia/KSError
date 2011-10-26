@@ -8,6 +8,24 @@
 
 #import "KSError.h"
 
+@implementation NSError (KSError)
+
+- (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code;
+{
+    if ([[self domain] isEqualToString:domain] && [self code] == code)
+    {
+        return YES;
+    }
+    
+    // Carry on down to underlying errors then
+    return [[[self userInfo] objectForKey:NSUnderlyingErrorKey] ks_isErrorOfDomain:domain code:code];
+}
+
+@end
+
+
+#pragma mark -
+
 
 @implementation KSError
 
