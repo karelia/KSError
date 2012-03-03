@@ -193,6 +193,12 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     [formatted release];
 }
 
+- (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
+{
+    [self setObject:options forUserInfoKey:NSLocalizedRecoveryOptionsErrorKey];
+    [self setObject:recoveryAttempter forUserInfoKey:NSRecoveryAttempterErrorKey];
+}
+
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone;
