@@ -130,6 +130,17 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 #pragma mark -
 
 
+@interface KSBlockErrorRecoveryAttempter : NSObject
+{
+  @private
+    BOOL    (^_block)(NSUInteger optionIndex);
+}
+
+- (id)initWithAttempterBlock:(BOOL(^)(NSUInteger optionIndex))block;
+
+@end
+
+
 @implementation KSMutableError
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
@@ -199,12 +210,62 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     [self setObject:recoveryAttempter forUserInfoKey:NSRecoveryAttempterErrorKey];
 }
 
+#if NS_BLOCKS_AVAILABLE
+- (void)setLocalizedRecoveryOptions:(NSArray *)options attempterBlock:(BOOL(^)(NSUInteger optionIndex))block;
+{
+    KSBlockErrorRecoveryAttempter *attempter = [[KSBlockErrorRecoveryAttempter alloc] initWithAttempterBlock:block];
+    [self setLocalizedRecoveryOptions:options attempter:attempter];
+    [attempter release];
+}
+#endif
+
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone;
 {
     // Default probably does [self retain]. Must override because we're mutable
     return [[NSError alloc] initWithDomain:[self domain] code:[self code] userInfo:[self userInfo]];
+}
+
+@end
+
+
+@implementation KSBlockErrorRecoveryAttempter
+
+- (id)initWithAttempterBlock:(BOOL(^)(NSUInteger optionIndex))block;
+{
+    if (self = [self init])
+    {
+        _block = [block copy];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_block release];
+    [super dealloc];
+}
+
+- (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex;
+{
+    return _block(recoveryOptionIndex);
+}
+
+- (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo;
+{
+    BOOL result = [self attemptRecoveryFromError:error optionIndex:recoveryOptionIndex];
+    
+    if (delegate)
+    {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
+                                    [delegate methodSignatureForSelector:didRecoverSelector]];
+        
+        [invocation setTarget:delegate];
+        [invocation setSelector:didRecoverSelector];
+        [invocation setArgument:&result atIndex:2];
+        [invocation setArgument:&contextInfo atIndex:3];
+    }
 }
 
 @end

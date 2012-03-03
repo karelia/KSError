@@ -74,5 +74,8 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 // Recovery attempter should implement the NSErrorRecoveryAttempting informal protocol
 - (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
 
+#if NS_BLOCKS_AVAILABLE
+- (void)setLocalizedRecoveryOptions:(NSArray *)options attempterBlock:(BOOL(^)(NSUInteger recoveryOptionIndex))attempter;
+#endif
 
 @end
