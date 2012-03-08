@@ -75,7 +75,9 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 - (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
 
 #if NS_BLOCKS_AVAILABLE
-- (void)setLocalizedRecoveryOptions:(NSArray *)options attempterBlock:(BOOL(^)(NSUInteger recoveryOptionIndex))attempter;
+// DON'T reference the error in your attempter block as that leads to a retain cycle. Instead, work with the error object as passed to the block
+- (void)setLocalizedRecoveryOptions:(NSArray *)options
+                     attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))attempter;
 #endif
 
 @end

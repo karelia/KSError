@@ -133,10 +133,10 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 @interface KSBlockErrorRecoveryAttempter : NSObject
 {
   @private
-    BOOL    (^_block)(NSUInteger optionIndex);
+    BOOL    (^_block)(NSError *error, NSUInteger optionIndex);
 }
 
-- (id)initWithAttempterBlock:(BOOL(^)(NSUInteger optionIndex))block;
+- (id)initWithAttempterBlock:(BOOL(^)(NSError *error, NSUInteger optionIndex))block;
 
 @end
 
@@ -211,7 +211,8 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 }
 
 #if NS_BLOCKS_AVAILABLE
-- (void)setLocalizedRecoveryOptions:(NSArray *)options attempterBlock:(BOOL(^)(NSUInteger optionIndex))block;
+- (void)setLocalizedRecoveryOptions:(NSArray *)options
+                     attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))block;
 {
     KSBlockErrorRecoveryAttempter *attempter = [[KSBlockErrorRecoveryAttempter alloc] initWithAttempterBlock:block];
     [self setLocalizedRecoveryOptions:options attempter:attempter];
@@ -232,7 +233,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 @implementation KSBlockErrorRecoveryAttempter
 
-- (id)initWithAttempterBlock:(BOOL(^)(NSUInteger optionIndex))block;
+- (id)initWithAttempterBlock:(BOOL(^)(NSError *error, NSUInteger optionIndex))block;
 {
     if (self = [self init])
     {
@@ -249,7 +250,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 - (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex;
 {
-    return _block(recoveryOptionIndex);
+    return _block(error, recoveryOptionIndex);
 }
 
 - (void)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex delegate:(id)delegate didRecoverSelector:(SEL)didRecoverSelector contextInfo:(void *)contextInfo;
