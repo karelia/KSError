@@ -211,6 +211,29 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 }
 
 #if NS_BLOCKS_AVAILABLE
+
+- (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(BOOL(^)())attempterBlock;
+{
+    NSArray *options = [self localizedRecoveryOptions];
+    NSUInteger optionIndex = [options count];
+    options = (options ? [options arrayByAddingObject:option] : [NSArray arrayWithObject:option]);
+    
+    NSObject *attempter = [self recoveryAttempter];
+    
+    [self setLocalizedRecoveryOptions:options attempterBlock:^BOOL(NSError *error, NSUInteger recoveryOptionIndex) {
+        
+        if (recoveryOptionIndex == optionIndex)
+        {
+            return attempterBlock();
+        }
+        else
+        {
+            // TODO: Technically the error could be a different one to self come the recovery, so maybe we could handle that better?
+            return [attempter attemptRecoveryFromError:error optionIndex:optionIndex];
+        }
+    }];
+}
+
 - (void)setLocalizedRecoveryOptions:(NSArray *)options
                      attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))block;
 {
@@ -218,6 +241,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     [self setLocalizedRecoveryOptions:options attempter:attempter];
     [attempter release];
 }
+
 #endif
 
 #pragma mark NSCopying
