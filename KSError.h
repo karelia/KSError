@@ -58,6 +58,8 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     NSMutableDictionary *_mutableUserInfo;
 }
 
++ (id)errorWithUnderlyingError:(NSError *)error;    // handy to recycle existing error's domain and code, ready for further info
+
 - (id)objectForUserInfoKey:(NSString *)key; // slightly faster than -userInfo
 - (void)setObject:(id)object forUserInfoKey:(NSString *)key;
 

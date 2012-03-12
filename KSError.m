@@ -143,6 +143,13 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 @implementation KSMutableError
 
++ (id)errorWithUnderlyingError:(NSError *)error;
+{
+    KSMutableError *result = [self errorWithDomain:[error domain] code:[error code] userInfo:[error userInfo]];
+    [result setObject:error forUserInfoKey:NSUnderlyingErrorKey];
+    return result;
+}
+
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict;
 {
     self = [super initWithDomain:domain code:code userInfo:nil];
