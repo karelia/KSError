@@ -235,8 +235,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
         }
         else
         {
-            // TODO: Technically the error could be a different one to self come the recovery, so maybe we could handle that better?
-            return [attempter attemptRecoveryFromError:error optionIndex:optionIndex];
+            return [attempter attemptRecoveryFromError:error optionIndex:recoveryOptionIndex];
         }
     }];
 }
