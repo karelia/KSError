@@ -231,7 +231,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
         
         if (recoveryOptionIndex == optionIndex)
         {
-            return attempterBlock();
+            return (attempterBlock ? attempterBlock() : NO);
         }
         else
         {
