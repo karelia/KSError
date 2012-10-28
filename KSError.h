@@ -26,25 +26,25 @@
 
 @interface KSError : NSError    // subclass so don't have to prefix method names
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
 
-+ (id)errorWithDomain:(NSString *)errorDomain
++ (instancetype)errorWithDomain:(NSString *)errorDomain
                  code:(NSInteger)errorCode 
  localizedDescription:(NSString *)description
 localizedRecoverySuggestion:(NSString *)recoverySuggestion
       underlyingError:(NSError *)underlyingError;
 
-+ (id)validationErrorWithCode:(NSInteger)code
++ (instancetype)validationErrorWithCode:(NSInteger)code
                        object:(id)object
                           key:(NSString *)key
                         value:(id)value
    localizedDescriptionFormat:(NSString *)format, ...;
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
 
 @end
 
@@ -58,7 +58,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     NSMutableDictionary *_mutableUserInfo;
 }
 
-+ (id)errorWithUnderlyingError:(NSError *)error;    // handy to recycle existing error's domain and code, ready for further info
++ (instancetype)errorWithUnderlyingError:(NSError *)error;    // handy to recycle existing error's domain and code, ready for further info
 
 - (id)objectForUserInfoKey:(NSString *)key; // slightly faster than -userInfo
 - (void)setObject:(id)object forUserInfoKey:(NSString *)key;

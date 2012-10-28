@@ -34,7 +34,7 @@
 
 @implementation KSError
 
-+ (id)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription
++ (instancetype)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription
 {
 	return [self errorWithDomain:anErrorDomain
                             code:anErrorCode
@@ -43,7 +43,7 @@
                                   forKey:NSLocalizedDescriptionKey]];
 }
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
 {
 	va_list argList;
 	va_start(argList, format);
@@ -56,7 +56,7 @@
     return result;
 }
 
-+ (id)errorWithDomain:(NSString *)errorDomain
++ (instancetype)errorWithDomain:(NSString *)errorDomain
                  code:(NSInteger)errorCode 
  localizedDescription:(NSString *)description
 localizedRecoverySuggestion:(NSString *)recoverySuggestion
@@ -71,7 +71,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
-+ (id)validationErrorWithCode:(NSInteger)code
++ (instancetype)validationErrorWithCode:(NSInteger)code
                        object:(id)object
                           key:(NSString *)key
                         value:(id)value
@@ -94,7 +94,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
 {
     NSParameterAssert(store);
     
@@ -103,7 +103,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
-+ (id)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
 {
     KSMutableError *result = [KSMutableError errorWithDomain:domain code:code userInfo:nil];
     
@@ -143,7 +143,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 @implementation KSMutableError
 
-+ (id)errorWithUnderlyingError:(NSError *)error;
++ (instancetype)errorWithUnderlyingError:(NSError *)error;
 {
     KSMutableError *result = [self errorWithDomain:[error domain] code:[error code] userInfo:[error userInfo]];
     [result setObject:error forUserInfoKey:NSUnderlyingErrorKey];
