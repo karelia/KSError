@@ -19,6 +19,7 @@ When creating your own APIs, it is often helpful to construct custom error objec
 
 	- (void)setObject:(id)object forUserInfoKey:(NSString *)key;
 	- (void)setLocalizedDescriptionWithFormat:(NSString *)format, ...;
+	- (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(BOOL(^)())attempter;
 
 Contact
 =======
@@ -36,3 +37,8 @@ License
 =======
 
 Standard BSD, yada yada yada…
+
+Alternatives
+============
+
+For just the error recovery aspect, [RMErrorRecoveryAttempter](https://github.com/realmacsoftware/RMErrorRecoveryAttempter) offers similar functionality.
