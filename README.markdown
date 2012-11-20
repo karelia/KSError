@@ -30,7 +30,7 @@ Questions about the code should be left as issues at https://github.com/karelia/
 Dependencies
 ============
 
-None beyond Foundation. Probably works back to OS X v10.3 if you were so inclined
+None beyond Foundation. Probably works back to OS X v10.3 (for the non-block-based APIs) if you were so inclined.
 
 License
 =======
