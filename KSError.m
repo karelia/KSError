@@ -38,9 +38,10 @@
 {
 	return [self errorWithDomain:anErrorDomain
                             code:anErrorCode
-                        userInfo:[NSDictionary
-                                  dictionaryWithObject:aLocalizedDescription
-                                  forKey:NSLocalizedDescriptionKey]];
+                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:    // handle nil description to give empty dictionary
+                                  aLocalizedDescription,
+                                  NSLocalizedDescriptionKey,
+                                  nil]];
 }
 
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
@@ -77,10 +78,14 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
                         value:(id)value
    localizedDescriptionFormat:(NSString *)format, ...;
 {
-    va_list argList;
-	va_start(argList, format);
-	NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
-	va_end(argList);
+    NSString *formatted = nil;
+    if (format)
+    {
+        va_list argList;
+        va_start(argList, format);
+        formatted = [[NSString alloc] initWithFormat:format arguments:argList];
+        va_end(argList);
+    }
 	
 	KSMutableError *result = [KSMutableError errorWithDomain:NSCocoaErrorDomain
                                                         code:code
