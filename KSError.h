@@ -28,7 +28,7 @@
 
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
 
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4);
 
 + (instancetype)errorWithDomain:(NSString *)errorDomain
                  code:(NSInteger)errorCode 
@@ -40,7 +40,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
                        object:(id)object
                           key:(NSString *)key
                         value:(id)value
-   localizedDescriptionFormat:(NSString *)format, ...;
+   localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(5, 6);
 
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
 
@@ -69,9 +69,9 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 #pragma mark Convenience
 
 @property(nonatomic, copy) NSString *localizedDescription;
-- (void)setLocalizedDescriptionWithFormat:(NSString *)format, ...;
+- (void)setLocalizedDescriptionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
-- (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ...;
+- (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
 // Recovery attempter should implement the NSErrorRecoveryAttempting informal protocol
 - (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
