@@ -41,4 +41,9 @@ Standard BSD, yada yada yada…
 Alternatives
 ============
 
-For just the error recovery aspect, [RMErrorRecoveryAttempter](https://github.com/realmacsoftware/RMErrorRecoveryAttempter) offers similar functionality.
+* For just the error recovery aspect, [RMErrorRecoveryAttempter](https://github.com/realmacsoftware/RMErrorRecoveryAttempter) offers similar functionality
+* [ErrorKit](https://github.com/hectr/ErrorKit) provides roughly the same feature set, plus:
+	* Logging and asserting of errors
+	* Error presentation on iOS
+	* More convenience methods for accessing `userInfo` keys
+	* An error *builder* class rather than mutable `NSError` subclass
