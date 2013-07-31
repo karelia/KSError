@@ -35,7 +35,7 @@
  
  @return `YES` if the receiver or an underlying error that matches `domain` and `code`.
  */
-- (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code;
+- (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code __attribute((nonnull(1)));
 
 /**
  Queries if the receiver or an underlying error is of a specific domain and code.
@@ -44,7 +44,7 @@
  
  @return The receiver or an underlying error that matches `domain` and `code`. `nil` if no match is found.
  */
-- (NSError *)ks_errorOfDomain:(NSString *)domain code:(NSInteger)code;
+- (NSError *)ks_errorOfDomain:(NSString *)domain code:(NSInteger)code __attribute((nonnull(1)));
 
 @end
 
@@ -62,7 +62,7 @@
  @param description The localized description of the error.
  @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` of `description`.
  */
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description __attribute((nonnull(1)));
 
 /**
  Creates and initializes a `KSError` object for a given domain and code with a given localized description.
@@ -73,7 +73,7 @@
  @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
  @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` built from `format, ...`.
  */
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4);
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4) __attribute((nonnull(1)));
 
 /**
  Creates and initializes a `KSError` object for a given domain and code with a given localized description, recovery suggestion and underlying error.
@@ -89,7 +89,7 @@
                  code:(NSInteger)errorCode 
  localizedDescription:(NSString *)description
 localizedRecoverySuggestion:(NSString *)recoverySuggestion
-      underlyingError:(NSError *)underlyingError;
+      underlyingError:(NSError *)underlyingError __attribute((nonnull(1)));
 
 /**
  Creates and initializes a `KSError` object for a validation error.
@@ -119,7 +119,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param store The persistent store affected by the error.
  @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` filled in to include `store`.
  */
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store __attribute((nonnull(1,3)));
 
 /**
  Creates and initializes a `KSError` object pertaining to a given URL.
@@ -131,7 +131,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param URL The URL involved in the error.
  @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` filled in to include `store`.
  */
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL __attribute((nonnull(1)));
 
 @end
 
@@ -154,7 +154,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param error The original error that will become the underlying error of the new error. Must not be `nil`.
  @return A `KSError` object matching `error` with the important difference that `error` is now the underlying error.
  */
-+ (instancetype)errorWithUnderlyingError:(NSError *)error;    // handy to recycle existing error's domain and code, ready for further info
++ (instancetype)errorWithUnderlyingError:(NSError *)error __attribute((nonnull(1)));
 
 /**
  Retrieves the value corresponding to `key` in the receiver's `-userInfo` dictionary.
@@ -165,7 +165,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param key The key to look up. Must not be `nil`.
  @result The object corresponding to `key` in the receiver's `-userInfo`.
  */
-- (id)objectForUserInfoKey:(NSString *)key;
+- (id)objectForUserInfoKey:(NSString *)key __attribute((nonnull(1)));
 
 /**
  Adds a given key-value pair to the reciever's `-userInfo` dictionary.
@@ -173,7 +173,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param object An object to add to `-userInfo`. If `nil`, any existing value for `key` is removed.
  @param key The key in `-userInfo` to be adjusted. May not be `nil`.
  */
-- (void)setObject:(id)object forUserInfoKey:(NSString *)key;
+- (void)setObject:(id)object forUserInfoKey:(NSString *)key __attribute((nonnull(1,2)));
 
 // Note you can only mutate user info; domain & code are fixed
 
@@ -207,7 +207,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param options An array of localized strings, one for each recovery option. Must contain at least one object.
  @param recoveryAttempter An object that implements the `NSErrorRecoveryAttempting` informal protocol. Must not be `nil`.
  */
-- (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
+- (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter __attribute((nonnull(1,2)));
 
 #if NS_BLOCKS_AVAILABLE
 
@@ -219,9 +219,9 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  will most likely create a retain cycle.
  
  @param option The localized recovery option. Must not be `nil`.
- @param attempter A block that attempts recovery from the error. Must not be `nil`.
+ @param attempter A block that attempts recovery from the error. May be `nil` to handle things like "Cancel" buttons.
  */
-- (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(BOOL(^)())attempter;
+- (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(BOOL(^)())attempter __attribute((nonnull(1)));
 
 /**
  Sets the recovery options with a corresponding block to perform them.
@@ -237,7 +237,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param attempter A block that attempts recovery from the error. Must not be `nil`.
  */
 - (void)setLocalizedRecoveryOptions:(NSArray *)options
-                     attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))attempter;
+                     attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))attempter __attribute((nonnull(1,2)));
 
 #endif
 
