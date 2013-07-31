@@ -30,10 +30,20 @@
 
 @interface NSError (KSError)
 
-// Returns YES if the receiver or one of its underlying erros matches the domain and code
+/**
+ Queries if the receiver or an underlying error is of a specific domain and code.
+ 
+ @return `YES` if the receiver or an underlying error that matches `domain` and `code`.
+ */
 - (BOOL)ks_isErrorOfDomain:(NSString *)domain code:(NSInteger)code;
 
-// Lower-level version of the above so you can pick out the specific error and work with it
+/**
+ Queries if the receiver or an underlying error is of a specific domain and code.
+ 
+ Useful for locating an underlying error for pulling further information out it.
+ 
+ @return The receiver or an underlying error that matches `domain` and `code`. `nil` if no match is found.
+ */
 - (NSError *)ks_errorOfDomain:(NSString *)domain code:(NSInteger)code;
 
 @end
@@ -44,24 +54,83 @@
 
 @interface KSError : NSError    // subclass so don't have to prefix method names
 
+/**
+ Creates and initializes a `KSError` object for a given domain and code with a given localized description.
+ 
+ @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param description The localized description of the error.
+ @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` of `description`.
+ */
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
 
+/**
+ Creates and initializes a `KSError` object for a given domain and code with a given localized description.
+ 
+ @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param format The localized description of the error with conversion specifications for the variable arguments that follow.
+ @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` built from `format, ...`.
+ */
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4);
 
+/**
+ Creates and initializes a `KSError` object for a given domain and code with a given localized description, recovery suggestion and underlying error.
+ 
+ @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param description The localized description of the error.
+ @param recoverySuggestion The localized recovery suggestion of the error. May be `nil`.
+ @param underlyingError The underlying error if there is one. May be `nil`.
+ @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` dictionary filled in from `description`, `recoverySuggestion`, and `underlyingError`.
+ */
 + (instancetype)errorWithDomain:(NSString *)errorDomain
                  code:(NSInteger)errorCode 
  localizedDescription:(NSString *)description
 localizedRecoverySuggestion:(NSString *)recoverySuggestion
       underlyingError:(NSError *)underlyingError;
 
+/**
+ Creates and initializes a `KSError` object for a validation error.
+ 
+ Most validation error codes are found in `CoreDataErrors.h`, but there's a few
+ in `FoundationErrors.h` too.
+ 
+ @param code A Cocoa error code, generally between `NSValidationErrorMinimum` and `NSValidationErrorMaximum`.
+ @param object The object being validated.
+ @param key The key (or key path) being validated.
+ @param value The value that was found to be invalid.
+ @param format The localized description of the error with conversion specifications for the variable arguments that follow.
+ @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ @return A `KSError` object for `NSCocoaErrorDomain` with the specified error `code` and `-userInfo` dictionary built from `object`, `key`, and `format, ...`.
+ */
 + (instancetype)validationErrorWithCode:(NSInteger)code
                        object:(id)object
                           key:(NSString *)key
                         value:(id)value
    localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(5, 6);
 
+/**
+ Creates and initializes a `KSError` object pertaining to a given persistent store.
+ 
+ @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param store The persistent store affected by the error.
+ @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` filled in to include `store`.
+ */
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store;
 
+/**
+ Creates and initializes a `KSError` object pertaining to a given URL.
+ 
+ URL error codes generally come from `NSURLError.h` or `FoundationErrors.h`.
+ 
+ @param domain The error domain, generally `NSCocoaErrorDomain` or `NSURLErrorDomain`. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param URL The URL involved in the error.
+ @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` filled in to include `store`.
+ */
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
 
 @end
@@ -76,9 +145,34 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     NSMutableDictionary *_mutableUserInfo;
 }
 
+/**
+ Creates and initializes a `KSError` object based off an existing error.
+ 
+ Since `NSError` objects are immutable, this is a good starting point for
+ creating a new error that adds to — or customizes — an existing error.
+ 
+ @param error The original error that will become the underlying error of the new error. Must not be `nil`.
+ @return A `KSError` object matching `error` with the important difference that `error` is now the underlying error.
+ */
 + (instancetype)errorWithUnderlyingError:(NSError *)error;    // handy to recycle existing error's domain and code, ready for further info
 
-- (id)objectForUserInfoKey:(NSString *)key; // slightly faster than -userInfo
+/**
+ Retrieves the value corresponding to `key` in the receiver's `-userInfo` dictionary.
+ 
+ Slightly faster than calling `-userInfo` as avoids copying the internal mutable
+ dictionary.
+ 
+ @param key The key to look up. Must not be `nil`.
+ @result The object corresponding to `key` in the receiver's `-userInfo`.
+ */
+- (id)objectForUserInfoKey:(NSString *)key;
+
+/**
+ Adds a given key-value pair to the reciever's `-userInfo` dictionary.
+ 
+ @param object An object to add to `-userInfo`. If `nil`, any existing value for `key` is removed.
+ @param key The key in `-userInfo` to be adjusted. May not be `nil`.
+ */
 - (void)setObject:(id)object forUserInfoKey:(NSString *)key;
 
 // Note you can only mutate user info; domain & code are fixed
@@ -86,19 +180,62 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 #pragma mark Convenience
 
+/**
+ Provides a setter method for storing localized description.
+ */
 @property(nonatomic, copy) NSString *localizedDescription;
+
+/**
+ Sets the localized description built from a format string.
+ 
+ @param format The localized description of the error with conversion specifications for the variable arguments that follow.
+ @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ */
 - (void)setLocalizedDescriptionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
+/**
+ Sets the localized recovery suggestion built from a format string.
+ 
+ @param format The localized recovery suggestion of the error with conversion specifications for the variable arguments that follow.
+ @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ */
 - (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
-// Recovery attempter should implement the NSErrorRecoveryAttempting informal protocol
+/**
+ Sets the recovery options and attempter in one fell swoop.
+ 
+ @param options An array of localized strings, one for each recovery option. Must contain at least one object.
+ @param recoveryAttempter An object that implements the `NSErrorRecoveryAttempting` informal protocol. Must not be `nil`.
+ */
 - (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
 
 #if NS_BLOCKS_AVAILABLE
 
+/**
+ Adds a recovery option with corresponding block to perform it.
+ 
+ Your recovery block should return a `BOOL` to indicate if recovery was
+ successful. Avoid strongly referencing the receiver within the block as that
+ will most likely create a retain cycle.
+ 
+ @param option The localized recovery option. Must not be `nil`.
+ @param attempter A block that attempts recovery from the error. Must not be `nil`.
+ */
 - (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(BOOL(^)())attempter;
 
-// DON'T reference the error in your attempter block as that leads to a retain cycle. Instead, work with the error object as passed to the block
+/**
+ Sets the recovery options with a corresponding block to perform them.
+ 
+ Your recovery block should return a `BOOL` to indicate if recovery was
+ successful.
+ 
+ Avoid strongly referencing the receiver within the block as that
+ will most likely create a retain cycle. Instead, use `error` that is passed
+ into the block.
+ 
+ @param options An array of localized strings, one for each recovery option. Must contain at least one object.
+ @param attempter A block that attempts recovery from the error. Must not be `nil`.
+ */
 - (void)setLocalizedRecoveryOptions:(NSArray *)options
                      attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))attempter;
 
