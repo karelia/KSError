@@ -173,7 +173,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param object An object to add to `-userInfo`. If `nil`, any existing value for `key` is removed.
  @param key The key in `-userInfo` to be adjusted. May not be `nil`.
  */
-- (void)setObject:(id)object forUserInfoKey:(NSString *)key __attribute((nonnull(1,2)));
+- (void)setObject:(id)object forUserInfoKey:(NSString *)key __attribute((nonnull(2)));
 
 // Note you can only mutate user info; domain & code are fixed
 
