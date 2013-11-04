@@ -224,6 +224,12 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 - (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ...;
 {
+    if (!format)
+    {
+        [self setObject:nil forUserInfoKey:NSLocalizedRecoverySuggestionErrorKey];
+        return;
+    }
+    
     va_list argList;
 	va_start(argList, format);
 	NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
