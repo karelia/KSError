@@ -85,8 +85,8 @@
  @param underlyingError The underlying error if there is one. May be `nil`.
  @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` dictionary filled in from `description`, `recoverySuggestion`, and `underlyingError`.
  */
-+ (instancetype)errorWithDomain:(NSString *)errorDomain
-                 code:(NSInteger)errorCode 
++ (instancetype)errorWithDomain:(NSString *)domain
+                 code:(NSInteger)code
  localizedDescription:(NSString *)description
 localizedRecoverySuggestion:(NSString *)recoverySuggestion
       underlyingError:(NSError *)underlyingError __attribute((nonnull(1)));
