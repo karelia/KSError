@@ -69,8 +69,7 @@
  
  @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
  @param code The error code for the error.
- @param format The localized description of the error with conversion specifications for the variable arguments that follow.
- @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ @param format The localized description of the error in printf format.
  @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` built from `format, ...`.
  */
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4) __attribute((nonnull(1)));
@@ -101,8 +100,7 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  @param object The object being validated.
  @param key The key (or key path) being validated.
  @param value The value that was found to be invalid.
- @param format The localized description of the error with conversion specifications for the variable arguments that follow.
- @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ @param format The localized description of the error in printf format.
  @return A `KSError` object for `NSCocoaErrorDomain` with the specified error `code` and `-userInfo` dictionary built from `object`, `key`, and `format, ...`.
  */
 + (instancetype)validationErrorWithCode:(NSInteger)code
@@ -188,16 +186,14 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 /**
  Sets the localized description built from a format string.
  
- @param format The localized description of the error with conversion specifications for the variable arguments that follow.
- @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ @param format The localized description of the error in printf format.
  */
 - (void)setLocalizedDescriptionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
 /**
  Sets the localized recovery suggestion built from a format string.
  
- @param format The localized recovery suggestion of the error with conversion specifications for the variable arguments that follow.
- @param ... Variable information to be inserted into the formatted error description (in the manner of printf).
+ @param format The localized recovery suggestion of the error in printf format.
  */
 - (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
