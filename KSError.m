@@ -71,7 +71,10 @@
 	
 	KSError *result = [self errorWithDomain:domain code:code localizedDescription:formatted];
     
+#if !__has_feature(objc_arc)
     [formatted release];
+#endif
+	
     return result;
 }
 
@@ -108,7 +111,10 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 	KSMutableError *result = [KSMutableError errorWithDomain:NSCocoaErrorDomain
                                                         code:code
                                         localizedDescription:formatted];
+
+#if !__has_feature(objc_arc)
     [formatted release];
+#endif
     
     [result setObject:object forUserInfoKey:NSValidationObjectErrorKey];
     [result setObject:key forUserInfoKey:NSValidationKeyErrorKey];
@@ -182,7 +188,11 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 
 - (NSDictionary *)userInfo;
 {
+#if __has_feature(objc_arc)
+	return [_mutableUserInfo copy];
+#else
     return [[_mutableUserInfo copy] autorelease];
+#endif
 }
 
 - (id)objectForUserInfoKey:(NSString *)key; // slightly faster than -userInfo
@@ -219,7 +229,9 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 	
 	[self setLocalizedDescription:formatted];
     
+#if !__has_feature(objc_arc)
     [formatted release];
+#endif
 }
 
 - (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ...;
@@ -237,7 +249,9 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 	
 	[self setObject:formatted forUserInfoKey:NSLocalizedRecoverySuggestionErrorKey];
     
+#if !__has_feature(objc_arc)
     [formatted release];
+#endif
 }
 
 - (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;
@@ -274,7 +288,10 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
 {
     KSBlockErrorRecoveryAttempter *attempter = [[KSBlockErrorRecoveryAttempter alloc] initWithAttempterBlock:block];
     [self setLocalizedRecoveryOptions:options attempter:attempter];
+	
+#if !__has_feature(objc_arc)
     [attempter release];
+#endif
 }
 
 #endif
@@ -301,11 +318,13 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return self;
 }
 
+#if !__has_feature(objc_arc)
 - (void)dealloc
 {
     [_block release];
     [super dealloc];
 }
+#endif
 
 - (BOOL)attemptRecoveryFromError:(NSError *)error optionIndex:(NSUInteger)recoveryOptionIndex;
 {
