@@ -46,6 +46,11 @@
  */
 - (NSError *)ks_errorOfDomain:(NSString *)domain code:(NSInteger)code __attribute((nonnull(1)));
 
+/**
+ Searches for an error (from the receiver and its underlying error(s)) matching `domain`.
+ */
+- (NSError *)ks_errorOfDomain:(NSString *)domain __attribute((nonnull));
+
 @end
 
 

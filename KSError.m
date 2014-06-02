@@ -44,6 +44,11 @@
     return [[[self userInfo] objectForKey:NSUnderlyingErrorKey] ks_errorOfDomain:domain code:code];
 }
 
+- (NSError *)ks_errorOfDomain:(NSString *)domain {
+    if ([self.domain isEqualToString:domain]) return self;
+    return [[self.userInfo objectForKey:NSUnderlyingErrorKey] ks_errorOfDomain:domain];
+}
+
 @end
 
 
