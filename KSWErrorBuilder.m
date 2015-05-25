@@ -29,6 +29,12 @@
     return self;
 }
 
+#pragma mark Creating the Error
+
+- (NSError * __nonnull)error {
+    return [NSError errorWithDomain:self.domain code:self.code userInfo:[self.userInfo copy]];
+}
+
 #pragma mark Convenience
 
 - (NSString * __nonnull)localizedDescription {
