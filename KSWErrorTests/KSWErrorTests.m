@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Karelia. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 
 @interface KSWErrorTests : XCTestCase

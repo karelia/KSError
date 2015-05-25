@@ -17,6 +17,12 @@
 		270EEDAF1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */; };
 		270EEDD71B137C030059CD8D /* NSError+KSWErrorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDD51B137C030059CD8D /* NSError+KSWErrorAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		270EEDD81B137C030059CD8D /* NSError+KSWErrorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */; };
+		270EEE1A1B137FDE0059CD8D /* KSWError.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EED8D1B1370890059CD8D /* KSWError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		270EEE1B1B137FE90059CD8D /* KSWErrorBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDA81B1371F10059CD8D /* KSWErrorBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		270EEE1C1B137FE90059CD8D /* NSError+KSWErrorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDD51B137C030059CD8D /* NSError+KSWErrorAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		270EEE1D1B137FEF0059CD8D /* KSWErrorBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDA91B1371F10059CD8D /* KSWErrorBuilder.m */; };
+		270EEE1E1B137FEF0059CD8D /* NSError+KSWErrorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */; };
+		270EEE1F1B137FEF0059CD8D /* KSWBlockErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,8 @@
 		270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWBlockErrorRecoveryAttempter.m; sourceTree = "<group>"; };
 		270EEDD51B137C030059CD8D /* NSError+KSWErrorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+KSWErrorAdditions.h"; sourceTree = "<group>"; };
 		270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+KSWErrorAdditions.m"; sourceTree = "<group>"; };
+		270EEE011B137F310059CD8D /* KSWError.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSWError.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		270EEE041B137F310059CD8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				270EED941B1370890059CD8D /* KSWError.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270EEDFD1B137F310059CD8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +94,7 @@
 			children = (
 				270EED881B1370890059CD8D /* KSWError.framework */,
 				270EED931B1370890059CD8D /* KSWErrorTests.xctest */,
+				270EEE011B137F310059CD8D /* KSWError.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,17 +111,18 @@
 				270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */,
 				270EEDAC1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h */,
 				270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */,
-				270EED8B1B1370890059CD8D /* Supporting Files */,
+				270EED8B1B1370890059CD8D /* iOS */,
+				270EEE031B137F310059CD8D /* Mac */,
 			);
 			name = KSWError;
 			sourceTree = "<group>";
 		};
-		270EED8B1B1370890059CD8D /* Supporting Files */ = {
+		270EED8B1B1370890059CD8D /* iOS */ = {
 			isa = PBXGroup;
 			children = (
 				270EED8C1B1370890059CD8D /* Info.plist */,
 			);
-			name = "Supporting Files";
+			name = iOS;
 			sourceTree = "<group>";
 		};
 		270EED971B1370890059CD8D /* KSWErrorTests */ = {
@@ -125,6 +142,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		270EEE031B137F310059CD8D /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				270EEE041B137F310059CD8D /* Info.plist */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -137,6 +162,16 @@
 				270EEDAE1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h in Headers */,
 				270EEDD71B137C030059CD8D /* NSError+KSWErrorAdditions.h in Headers */,
 				270EEDAA1B1371F10059CD8D /* KSWErrorBuilder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270EEDFE1B137F310059CD8D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				270EEE1A1B137FDE0059CD8D /* KSWError.h in Headers */,
+				270EEE1C1B137FE90059CD8D /* NSError+KSWErrorAdditions.h in Headers */,
+				270EEE1B1B137FE90059CD8D /* KSWErrorBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +214,24 @@
 			productReference = 270EED931B1370890059CD8D /* KSWErrorTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		270EEE001B137F310059CD8D /* KSWError Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 270EEE141B137F310059CD8D /* Build configuration list for PBXNativeTarget "KSWError Mac" */;
+			buildPhases = (
+				270EEDFC1B137F310059CD8D /* Sources */,
+				270EEDFD1B137F310059CD8D /* Frameworks */,
+				270EEDFE1B137F310059CD8D /* Headers */,
+				270EEDFF1B137F310059CD8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KSWError Mac";
+			productName = KSWError;
+			productReference = 270EEE011B137F310059CD8D /* KSWError.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -192,6 +245,9 @@
 						CreatedOnToolsVersion = 6.3.1;
 					};
 					270EED921B1370890059CD8D = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					270EEE001B137F310059CD8D = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
 				};
@@ -210,6 +266,7 @@
 			targets = (
 				270EED871B1370890059CD8D /* KSWError iOS */,
 				270EED921B1370890059CD8D /* KSWErrorTests */,
+				270EEE001B137F310059CD8D /* KSWError Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -223,6 +280,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		270EED911B1370890059CD8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270EEDFF1B137F310059CD8D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -247,6 +311,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				270EED9B1B1370890059CD8D /* KSWErrorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		270EEDFC1B137F310059CD8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				270EEE1E1B137FEF0059CD8D /* NSError+KSWErrorAdditions.m in Sources */,
+				270EEE1F1B137FEF0059CD8D /* KSWBlockErrorRecoveryAttempter.m in Sources */,
+				270EEE1D1B137FEF0059CD8D /* KSWErrorBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +485,49 @@
 			};
 			name = Release;
 		};
+		270EEE151B137F310059CD8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = Mac/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = KSWError;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		270EEE161B137F310059CD8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Mac/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = KSWError;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -440,6 +557,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		270EEE141B137F310059CD8D /* Build configuration list for PBXNativeTarget "KSWError Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				270EEE151B137F310059CD8D /* Debug */,
+				270EEE161B137F310059CD8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
