@@ -145,7 +145,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param object The object being validated.
  @param key The key (or key path) being validated.
  @param value The value that was found to be invalid.
- @param format The localized description of the error in printf format.
  @return A `KSError` object for `NSCocoaErrorDomain` with the specified error `code` and `-userInfo` dictionary built from `object`, `key`, and `format, ...`.
  */
 + (instancetype)validationErrorBuilderWithCode:(NSInteger)code
