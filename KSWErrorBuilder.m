@@ -22,6 +22,8 @@
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict {
     if (self = [super init]) {
+        _domain = [domain copy];
+        _code = code;
         _userInfo = [[NSMutableDictionary alloc] initWithDictionary:dict];
     }
     return self;

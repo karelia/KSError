@@ -36,7 +36,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(nullable NSDictionary *)dict NS_DESIGNATED_INITIALIZER;
 
 
-#pragma mark User Info
+#pragma mark Core Error Properties
+
+@property(nonatomic, readonly, copy) NSString *domain;
+
+@property(nonatomic, readonly) NSInteger code;
 
 /**
  Clients can directly mutate `userInfo`, or use the convenience methods when suits.
