@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return A `KSWErrorBuilder` object matching `error` with the important difference that `error` is
  now the underlying error.
  */
-+ (instancetype)errorWithUnderlyingError:(NSError *)error;
++ (instancetype)builderWithUnderlyingError:(NSError *)error;
 
 /**
  @param If you pass `nil` the builder will automatically create an empty user info dictionary for

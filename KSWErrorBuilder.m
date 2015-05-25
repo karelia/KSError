@@ -13,7 +13,7 @@
 
 @implementation KSWErrorBuilder
 
-+ (instancetype)errorWithUnderlyingError:(NSError *)error;
++ (instancetype)builderWithUnderlyingError:(NSError *)error;
 {
     KSWErrorBuilder *result = [[self alloc] initWithDomain:error.domain code:error.code userInfo:error.userInfo];
     [result.userInfo setObject:[error copy] forKey:NSUnderlyingErrorKey];
