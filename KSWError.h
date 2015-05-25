@@ -6,7 +6,8 @@
 //  Copyright (c) 2015 Karelia. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 
 //! Project version number for KSWError.
