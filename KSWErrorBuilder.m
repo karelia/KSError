@@ -37,7 +37,7 @@
 
 #pragma mark Convenience
 
-- (NSString * __nonnull)localizedDescription {
+- (NSString *)localizedDescription {
     return self.userInfo[NSLocalizedDescriptionKey];
 }
 - (void)setLocalizedDescription:(NSString *)description;
@@ -56,10 +56,10 @@
     
 }
 
-- (NSString * __nonnull)localizedRecoverySuggestion {
+- (NSString *)localizedRecoverySuggestion {
     return self.userInfo[NSLocalizedRecoverySuggestionErrorKey];
 }
-- (void)setLocalizedRecoverySuggestion:(NSString * __nonnull)suggestion {
+- (void)setLocalizedRecoverySuggestion:(NSString *)suggestion {
     self.userInfo[NSLocalizedRecoverySuggestionErrorKey] = suggestion;
 }
 
