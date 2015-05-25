@@ -133,6 +133,29 @@ NS_ASSUME_NONNULL_BEGIN
                                          value:(id)value;
 
 
+#pragma mark Quickly Constructing an Error
+
+/**
+ Creates and initializes a `KSError` object for a given domain and code with a given localized description.
+ 
+ @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param description The localized description of the error.
+ @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` of `description`.
+ */
++ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
+
+/**
+ Creates and initializes a `KSError` object for a given domain and code with a given localized description.
+ 
+ @param domain The error domain—this can be one of the predefined `NSError` domains, or an arbitrary string describing a custom domain. `domain` must not be `nil`.
+ @param code The error code for the error.
+ @param format The localized description of the error in printf format.
+ @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` built from `format, ...`.
+ */
++ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(3, 4);
+
+
 @end
 
 NS_ASSUME_NONNULL_END

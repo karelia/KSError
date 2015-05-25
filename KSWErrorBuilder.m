@@ -113,4 +113,28 @@
     return result;
 }
 
+#pragma mark Quickly Constructing an Error
+
++ (NSError *)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription
+{
+    return [NSError errorWithDomain:anErrorDomain
+                               code:anErrorCode
+                           userInfo:[NSDictionary dictionaryWithObjectsAndKeys:    // handle nil description to give empty dictionary
+                                     aLocalizedDescription,
+                                     NSLocalizedDescriptionKey,
+                                     nil]];
+}
+
++ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
+{
+    va_list argList;
+    va_start(argList, format);
+    NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
+    va_end(argList);
+    
+    NSError *result = [self errorWithDomain:domain code:code localizedDescription:formatted];
+    
+    return result;
+}
+
 @end
