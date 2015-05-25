@@ -10,6 +10,13 @@
 		270EED8E1B1370890059CD8D /* KSWError.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EED8D1B1370890059CD8D /* KSWError.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		270EED941B1370890059CD8D /* KSWError.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 270EED881B1370890059CD8D /* KSWError.framework */; };
 		270EED9B1B1370890059CD8D /* KSWErrorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EED9A1B1370890059CD8D /* KSWErrorTests.m */; };
+		270EEDA61B13718A0059CD8D /* KSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDA41B13718A0059CD8D /* KSError.h */; };
+		270EEDAA1B1371F10059CD8D /* KSWErrorBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDA81B1371F10059CD8D /* KSWErrorBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		270EEDAB1B1371F10059CD8D /* KSWErrorBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDA91B1371F10059CD8D /* KSWErrorBuilder.m */; };
+		270EEDAE1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDAC1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h */; };
+		270EEDAF1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */; };
+		270EEDD71B137C030059CD8D /* NSError+KSWErrorAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 270EEDD51B137C030059CD8D /* NSError+KSWErrorAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		270EEDD81B137C030059CD8D /* NSError+KSWErrorAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +36,14 @@
 		270EED931B1370890059CD8D /* KSWErrorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSWErrorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		270EED991B1370890059CD8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		270EED9A1B1370890059CD8D /* KSWErrorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KSWErrorTests.m; sourceTree = "<group>"; };
+		270EEDA41B13718A0059CD8D /* KSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSError.h; sourceTree = "<group>"; };
+		270EEDA51B13718A0059CD8D /* KSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSError.m; sourceTree = "<group>"; };
+		270EEDA81B1371F10059CD8D /* KSWErrorBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWErrorBuilder.h; sourceTree = "<group>"; };
+		270EEDA91B1371F10059CD8D /* KSWErrorBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWErrorBuilder.m; sourceTree = "<group>"; };
+		270EEDAC1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSWBlockErrorRecoveryAttempter.h; sourceTree = "<group>"; };
+		270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSWBlockErrorRecoveryAttempter.m; sourceTree = "<group>"; };
+		270EEDD51B137C030059CD8D /* NSError+KSWErrorAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+KSWErrorAdditions.h"; sourceTree = "<group>"; };
+		270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+KSWErrorAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +86,15 @@
 		270EED8A1B1370890059CD8D /* KSWError */ = {
 			isa = PBXGroup;
 			children = (
+				270EEDA41B13718A0059CD8D /* KSError.h */,
+				270EEDA51B13718A0059CD8D /* KSError.m */,
 				270EED8D1B1370890059CD8D /* KSWError.h */,
+				270EEDA81B1371F10059CD8D /* KSWErrorBuilder.h */,
+				270EEDA91B1371F10059CD8D /* KSWErrorBuilder.m */,
+				270EEDD51B137C030059CD8D /* NSError+KSWErrorAdditions.h */,
+				270EEDD61B137C030059CD8D /* NSError+KSWErrorAdditions.m */,
+				270EEDAC1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h */,
+				270EEDAD1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m */,
 				270EED8B1B1370890059CD8D /* Supporting Files */,
 			);
 			name = KSWError;
@@ -110,6 +133,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				270EED8E1B1370890059CD8D /* KSWError.h in Headers */,
+				270EEDA61B13718A0059CD8D /* KSError.h in Headers */,
+				270EEDAE1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.h in Headers */,
+				270EEDD71B137C030059CD8D /* NSError+KSWErrorAdditions.h in Headers */,
+				270EEDAA1B1371F10059CD8D /* KSWErrorBuilder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +236,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				270EEDAB1B1371F10059CD8D /* KSWErrorBuilder.m in Sources */,
+				270EEDD81B137C030059CD8D /* NSError+KSWErrorAdditions.m in Sources */,
+				270EEDAF1B1374FD0059CD8D /* KSWBlockErrorRecoveryAttempter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +352,7 @@
 		270EED9F1B1370890059CD8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -337,6 +368,7 @@
 		270EEDA01B1370890059CD8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

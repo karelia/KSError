@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
 //! Project version number for KSWError.
 FOUNDATION_EXPORT double KSWErrorVersionNumber;
 
 //! Project version string for KSWError.
 FOUNDATION_EXPORT const unsigned char KSWErrorVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <KSWError/PublicHeader.h>
 
-
+#import <KSWError/KSWErrorBuilder.h>
+#import <KSWError/NSError+KSWErrorAdditions.h>
