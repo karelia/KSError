@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
                      attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))attempter;
 
 
-#pragma mark Validation Erros
+#pragma mark Validation Errors
 
 /**
  Creates and initializes a `KSWErrorBuilder` object for a validation error.
