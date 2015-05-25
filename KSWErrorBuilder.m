@@ -149,14 +149,25 @@
 
 #pragma mark Quickly Constructing an Error
 
-+ (NSError *)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription
-{
++ (NSError *)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription recoverySuggestion:(NSString * __nonnull)recoverySuggestion {
+    
+    NSDictionary *info = nil;
+    if (aLocalizedDescription) {
+        if (recoverySuggestion) {
+            info = @{ NSLocalizedDescriptionKey: aLocalizedDescription,
+                      NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion };
+        }
+        else {
+            info = @{ NSLocalizedDescriptionKey: aLocalizedDescription };
+        }
+    }
+    else if (recoverySuggestion) {
+        info = @{ NSLocalizedRecoverySuggestionErrorKey: recoverySuggestion };
+    }
+    
     return [NSError errorWithDomain:anErrorDomain
                                code:anErrorCode
-                           userInfo:[NSDictionary dictionaryWithObjectsAndKeys:    // handle nil description to give empty dictionary
-                                     aLocalizedDescription,
-                                     NSLocalizedDescriptionKey,
-                                     nil]];
+                           userInfo:info];
 }
 
 + (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescriptionFormat:(NSString *)format, ...;
@@ -166,7 +177,7 @@
     NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
     va_end(argList);
     
-    NSError *result = [self errorWithDomain:domain code:code localizedDescription:formatted];
+    NSError *result = [self errorWithDomain:domain code:code localizedDescription:formatted recoverySuggestion:nil];
     
     return result;
 }

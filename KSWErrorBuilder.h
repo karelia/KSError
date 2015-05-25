@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param description The localized description of the error.
  @return A `KSError` object for `domain` with the specified error `code` and `-localizedDescription` of `description`.
  */
-+ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
++ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description recoverySuggestion:(NSString *)recoverySuggestion;
 
 /**
  Creates and initializes a `KSError` object for a given domain and code with a given localized description.
