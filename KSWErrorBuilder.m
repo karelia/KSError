@@ -149,7 +149,7 @@
 
 #pragma mark Quickly Constructing an Error
 
-+ (NSError *)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription recoverySuggestion:(NSString * __nonnull)recoverySuggestion {
++ (NSError *)errorWithDomain:(NSString *)anErrorDomain code:(NSInteger)anErrorCode localizedDescription:(NSString *)aLocalizedDescription recoverySuggestion:(NSString *)recoverySuggestion {
     
     NSDictionary *info = nil;
     if (aLocalizedDescription) {
