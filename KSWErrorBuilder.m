@@ -56,11 +56,17 @@
     
 }
 
-- (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ...;
-{
-    if (!format)
-    {
-        [self.userInfo setObject:nil forKey:NSLocalizedRecoverySuggestionErrorKey];
+- (NSString * __nonnull)localizedRecoverySuggestion {
+    return self.userInfo[NSLocalizedRecoverySuggestionErrorKey];
+}
+- (void)setLocalizedRecoverySuggestion:(NSString * __nonnull)suggestion {
+    self.userInfo[NSLocalizedRecoverySuggestionErrorKey] = suggestion;
+}
+
+- (void)setLocalizedRecoverySuggestionWithFormat:(NSString *)format, ... {
+    
+    if (!format) {
+        self.localizedRecoverySuggestion = nil;
         return;
     }
     
@@ -69,8 +75,7 @@
     NSString *formatted = [[NSString alloc] initWithFormat:format arguments:argList];
     va_end(argList);
     
-    [self.userInfo setObject:formatted forKey:NSLocalizedRecoverySuggestionErrorKey];
-    
+    self.localizedRecoverySuggestion = formatted;
 }
 
 - (void)setLocalizedRecoveryOptions:(NSArray *)options attempter:(NSObject *)recoveryAttempter;

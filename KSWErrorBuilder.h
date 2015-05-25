@@ -70,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setLocalizedDescriptionWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1, 2);
 
+@property(nonatomic, copy) NSString *localizedRecoverySuggestion;
+
 /**
  Sets the localized recovery suggestion built from a format string.
  
