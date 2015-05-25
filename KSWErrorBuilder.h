@@ -99,7 +99,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param option The localized recovery option. Must not be `nil`.
  @param attempter A block that attempts recovery from the error. May be `nil` to handle things like "Cancel" buttons.
  */
-- (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(BOOL(^)())attempter;
+- (void)addLocalizedRecoveryOption:(NSString *)option attempterBlock:(nullable BOOL(^)())attempter;
 
 /**
  Sets the recovery options with a corresponding block to perform them.
