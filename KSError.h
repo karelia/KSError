@@ -56,16 +56,4 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
  */
 + (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code persistentStore:(NSPersistentStore *)store __attribute((nonnull(1,3)));
 
-/**
- Creates and initializes a `KSError` object pertaining to a given URL.
- 
- URL error codes generally come from `NSURLError.h` or `FoundationErrors.h`.
- 
- @param domain The error domain, generally `NSCocoaErrorDomain` or `NSURLErrorDomain`. `domain` must not be `nil`.
- @param code The error code for the error.
- @param URL The URL involved in the error.
- @return A `KSError` object for `domain` with the specified error `code` and `-userInfo` filled in to include `store`.
- */
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL __attribute((nonnull(1)));
-
 @end

@@ -112,6 +112,21 @@ NS_ASSUME_NONNULL_BEGIN
                      attempterBlock:(BOOL(^)(NSError *error, NSUInteger recoveryOptionIndex))attempter;
 
 
+#pragma mark URL Errors
+
+/**
+ Creates and initializes a `KSError` object pertaining to a given URL.
+ 
+ URL error codes generally come from `NSURLError.h` or `FoundationErrors.h`.
+ 
+ @param domain The error domain, generally `NSCocoaErrorDomain` or `NSURLErrorDomain`.
+ @param code The error code for the error.
+ @param URL The URL involved in the error.
+ @return A `KSWErrorBuilder` object with the various URL-related info keys filled in
+ */
++ (instancetype)errorBuilderWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
+
+
 #pragma mark Validation Errors
 
 /**

@@ -29,7 +29,9 @@
 
 #pragma mark Convenience
 
-@dynamic localizedDescription;
+- (NSString * __nonnull)localizedDescription {
+    return self.userInfo[NSLocalizedDescriptionKey];
+}
 - (void)setLocalizedDescription:(NSString *)description;
 {
     [self.userInfo setObject:description forKey:NSLocalizedDescriptionKey];
@@ -96,6 +98,25 @@
     KSWBlockErrorRecoveryAttempter *attempter = [[KSWBlockErrorRecoveryAttempter alloc] initWithAttempterBlock:block];
     [self setLocalizedRecoveryOptions:options attempter:attempter];
     
+}
+
+#pragma mark URL Errors
+
++ (instancetype)errorBuilderWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL {
+    
+    KSWErrorBuilder *result = [[self alloc] initWithDomain:domain code:code userInfo:nil];
+    
+    [result.userInfo setObject:URL forKey:NSURLErrorKey];
+    
+    if ([URL isFileURL]) [result.userInfo setObject:[URL path] forKey:NSFilePathErrorKey];
+    
+    if ([domain isEqualToString:NSURLErrorDomain])
+    {
+        [result.userInfo setObject:URL forKey:NSURLErrorFailingURLErrorKey];
+        [result.userInfo setObject:[URL absoluteString] forKey:NSURLErrorFailingURLStringErrorKey];
+    }
+    
+    return result;
 }
 
 #pragma mark Validation Errors

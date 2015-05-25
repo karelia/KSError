@@ -53,25 +53,4 @@ localizedRecoverySuggestion:(NSString *)recoverySuggestion
     return result;
 }
 
-+ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code URL:(NSURL *)URL;
-{
-    KSMutableError *result = [KSMutableError errorWithDomain:domain code:code userInfo:nil];
-    
-    [result setObject:URL forUserInfoKey:NSURLErrorKey];
-    
-    if ([URL isFileURL]) [result setObject:[URL path] forUserInfoKey:NSFilePathErrorKey];
-    
-    if ([domain isEqualToString:NSURLErrorDomain])
-    {
-#if defined MAC_OS_X_VERSION_10_6 && MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
-        [result setObject:URL forUserInfoKey:NSURLErrorFailingURLErrorKey];
-        [result setObject:[URL absoluteString] forUserInfoKey:NSURLErrorFailingURLStringErrorKey];
-#else
-        [result setObject:[URL absoluteString] forUserInfoKey:NSErrorFailingURLStringKey];
-#endif
-    }
-    
-    return result;
-}
-
 @end
