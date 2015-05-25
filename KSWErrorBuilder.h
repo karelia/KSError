@@ -30,10 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)builderWithUnderlyingError:(NSError *)error;
 
 /**
- @param If you pass `nil` the builder will automatically create an empty user info dictionary for
+ @param userInfo If you pass `nil` the builder will automatically create an empty user info dictionary for
  you.
  */
-- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(nullable NSDictionary *)dict NS_DESIGNATED_INITIALIZER;
+- (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(nullable NSDictionary *)userInfo NS_DESIGNATED_INITIALIZER;
 
 
 #pragma mark Core Error Properties
