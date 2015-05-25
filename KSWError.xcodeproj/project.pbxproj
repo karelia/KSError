@@ -143,9 +143,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		270EED871B1370890059CD8D /* KSWError */ = {
+		270EED871B1370890059CD8D /* KSWError iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 270EED9E1B1370890059CD8D /* Build configuration list for PBXNativeTarget "KSWError" */;
+			buildConfigurationList = 270EED9E1B1370890059CD8D /* Build configuration list for PBXNativeTarget "KSWError iOS" */;
 			buildPhases = (
 				270EED831B1370890059CD8D /* Sources */,
 				270EED841B1370890059CD8D /* Frameworks */,
@@ -156,7 +156,7 @@
 			);
 			dependencies = (
 			);
-			name = KSWError;
+			name = "KSWError iOS";
 			productName = KSWError;
 			productReference = 270EED881B1370890059CD8D /* KSWError.framework */;
 			productType = "com.apple.product-type.framework";
@@ -208,7 +208,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				270EED871B1370890059CD8D /* KSWError */,
+				270EED871B1370890059CD8D /* KSWError iOS */,
 				270EED921B1370890059CD8D /* KSWErrorTests */,
 			);
 		};
@@ -255,7 +255,7 @@
 /* Begin PBXTargetDependency section */
 		270EED961B1370890059CD8D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 270EED871B1370890059CD8D /* KSWError */;
+			target = 270EED871B1370890059CD8D /* KSWError iOS */;
 			targetProxy = 270EED951B1370890059CD8D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -360,7 +360,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KSWError;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -376,7 +376,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KSWError;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -423,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		270EED9E1B1370890059CD8D /* Build configuration list for PBXNativeTarget "KSWError" */ = {
+		270EED9E1B1370890059CD8D /* Build configuration list for PBXNativeTarget "KSWError iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270EED9F1B1370890059CD8D /* Debug */,
