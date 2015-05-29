@@ -134,7 +134,7 @@
 
 #pragma mark Validation Errors
 
-+ (instancetype)validationErrorBuilderWithCode:(NSInteger)code object:(id __nonnull)object key:(NSString * __nonnull)key value:(id __nonnull)value {
++ (instancetype)validationErrorBuilderWithCode:(NSInteger)code object:(id __nonnull)object key:(NSString *)key value:(id)value {
     
     KSWErrorBuilder *result = [[self alloc] initWithDomain:NSCocoaErrorDomain
                                                       code:code

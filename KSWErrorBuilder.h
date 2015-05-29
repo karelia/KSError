@@ -149,8 +149,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (instancetype)validationErrorBuilderWithCode:(NSInteger)code
                                         object:(id)object
-                                           key:(NSString *)key
-                                         value:(id)value;
+                                           key:(nullable NSString *)key
+                                         value:(nullable id)value;
 
 
 #pragma mark Quickly Constructing an Error
