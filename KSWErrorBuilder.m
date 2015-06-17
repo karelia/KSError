@@ -134,15 +134,15 @@
 
 #pragma mark Validation Errors
 
-+ (instancetype)validationErrorBuilderWithCode:(NSInteger)code object:(id __nonnull)object key:(NSString *)key value:(id)value {
++ (instancetype)validationErrorBuilderWithCode:(NSInteger)code object:(id)object key:(NSString *)key value:(id)value {
     
     KSWErrorBuilder *result = [[self alloc] initWithDomain:NSCocoaErrorDomain
                                                       code:code
                                                   userInfo:nil];
     
     [result.userInfo setObject:object forKey:NSValidationObjectErrorKey];
-    [result.userInfo setObject:key forKey:NSValidationKeyErrorKey];
-    [result.userInfo setObject:value forKey:NSValidationValueErrorKey];
+    [result.userInfo setValue:key forKey:NSValidationKeyErrorKey];
+    [result.userInfo setValue:value forKey:NSValidationValueErrorKey];
     
     return result;
 }
