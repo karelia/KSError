@@ -31,6 +31,10 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithDomain:nil code:0 userInfo:nil];
+}
+
 #pragma mark Creating the Error
 
 - (NSError * __nonnull)error {
