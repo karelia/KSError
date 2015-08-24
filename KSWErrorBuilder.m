@@ -32,7 +32,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithDomain:nil code:0 userInfo:nil];
+    return nil;
 }
 
 #pragma mark Creating the Error

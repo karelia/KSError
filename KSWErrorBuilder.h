@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(nullable NSDictionary *)userInfo NS_DESIGNATED_INITIALIZER;
 
+/// Can't be used since a domain and code are required
+- (instancetype)init NS_UNAVAILABLE;
+
 
 #pragma mark Core Error Properties
 
