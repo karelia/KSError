@@ -21,6 +21,8 @@
 }
 
 - (id)initWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict {
+    NSParameterAssert(domain);
+    
     if (self = [super init]) {
         _domain = [domain copy];
         _code = code;
