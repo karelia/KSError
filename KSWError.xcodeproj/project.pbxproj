@@ -431,6 +431,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSWError;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -448,6 +449,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSWError;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -506,6 +508,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSWError;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -525,6 +528,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.karelia.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = KSWError;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
