@@ -88,6 +88,7 @@
 				270EED891B1370890059CD8D /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		270EED891B1370890059CD8D /* Products */ = {
 			isa = PBXGroup;
